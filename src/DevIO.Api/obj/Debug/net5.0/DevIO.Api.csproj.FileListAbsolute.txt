@@ -110,4 +110,4 @@ C:\Workspaces\ApiFastReport\src\DevIO.Api\obj\Debug\net5.0\DevIO.Api.dll
 C:\Workspaces\ApiFastReport\src\DevIO.Api\obj\Debug\net5.0\ref\DevIO.Api.dll
 C:\Workspaces\ApiFastReport\src\DevIO.Api\obj\Debug\net5.0\DevIO.Api.pdb
 C:\Workspaces\ApiFastReport\src\DevIO.Api\obj\Debug\net5.0\DevIO.Api.genruntimeconfig.cache
-C:\Workspaces\ApiFastReport\src\DevIO.Api\obj\Debug\net5.0\DevIO.Api.csproj.CopyComplete
+C:\Workspaces\ApiFastReport\src\DevIO.Api\obj\Debug\net5.0\DevIO.Api.csproj.AssemblyReference.cache
