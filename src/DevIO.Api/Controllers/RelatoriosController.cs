@@ -7,6 +7,7 @@ using System.Linq;
 
 namespace DevIO.Api.Controllers
 {
+
     public class RelatoriosController : ControllerBase
     {
         private readonly MeuDbContext _context;
@@ -32,6 +33,30 @@ namespace DevIO.Api.Controllers
             //"Usuarios" nome usado no relatório como Data Source
             return File(HelperFastReport.ExportarPdf(webReport), "application/pdf", "ListagemDeUsuario.pdf");
         }
+
+
+        [HttpGet("ListagemUsuarioComCabecalho")]
+        public IActionResult GetListagemUsuarioComCabecalho()
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var webReport = HelperFastReport.WebReport("ListagemUsuarioComCabecalho.frx");
+
+            var usuarioList = _context.Usuarios.Where(u => u.Nome != "").ToList();
+            var empresaList = _context.Empresas.Where(u => u.Id == 1).ToList();
+
+            var usuarios = HelperFastReport.GetTable<UsuarioEntity>(usuarioList, "Usuarios");
+            var empresas = HelperFastReport.GetTable<EmpresaEntity>(empresaList, "Empresas");
+
+            webReport.Report.RegisterData(usuarios, "Usuarios");
+            webReport.Report.RegisterData(empresas, "Empresas");
+            //"Usuarios" nome usado no relatório como Data Source
+            return File(HelperFastReport.ExportarPdf(webReport), "application/pdf", "ListagemDeUsuarioComCabecalho.pdf");
+        }
+
 
 
     }

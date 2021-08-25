@@ -30,7 +30,7 @@ namespace DevIO.Api
             {
                 c.SwaggerDoc("v1", new OpenApiInfo
                 {
-                    Title = "Curso de Relatório com FastReport Community em NETCore 5",
+                    Title = "FastReport Community em NETCore 5",
                     Version = "v1",
                     TermsOfService = new Uri("http://tasdigital.com.br"),
                     Contact = new OpenApiContact
@@ -70,7 +70,7 @@ namespace DevIO.Api
                 app.UseSwagger();
                 app.UseSwaggerUI(c =>
                 {
-                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Curso de Relatório com FastReport Community");
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "FastReport Community");
                     //c.RoutePrefix = string.Empty;
 
                 });
