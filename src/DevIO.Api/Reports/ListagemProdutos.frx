@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" ReportInfo.Created="08/23/2021 20:53:17" ReportInfo.Modified="08/26/2021 20:42:11" ReportInfo.CreatorVersion="2021.3.0.0">
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlqM7gJFg/iaLrqMhRfGy5lGvXVhap9q2x2VnuVAPNGTy2ft9EmwS3tjMfGOx7gf7NCQhKDo6iX483mNFXQef8dPQv7j/KDMbyYkhx9GhaF6qGDBFNYi2EhN6/ivZgU7PzWmJlxy+O9LgYHLH+Cl5ezRfUP1+v9QpLOfUlYXDC2aM8Fch86VTnRV9ZeyAmfSlGpB1A88UrMD0l7IQaFxwzB4TEwN9ZdPEM5Q1j+feQHgs0=">
+      <TableDataSource Name="Produtos" DataType="System.Int32" Enabled="true" TableName="Produtos">
+        <Column Name="Id" DataType="System.Int32"/>
+        <Column Name="Descricao" DataType="System.String"/>
+        <Column Name="Preco" DataType="System.Decimal"/>
+        <Column Name="Ean" DataType="System.String"/>
+        <Column Name="CategoriaId" DataType="System.Int32"/>
+        <Column Name="CreatedAt" DataType="System.DateTime"/>
+        <Column Name="UpdatedAt" DataType="System.DateTime"/>
+      </TableDataSource>
+      <TableDataSource Name="Empresas" DataType="System.Int32" Enabled="true" TableName="Empresas">
+        <Column Name="Id" DataType="System.Int32"/>
+        <Column Name="Nome" DataType="System.String"/>
+        <Column Name="Email" DataType="System.String"/>
+        <Column Name="Foto" DataType="System.String"/>
+        <Column Name="CreatedAt" DataType="System.DateTime"/>
+        <Column Name="UpdatedAt" DataType="System.DateTime"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+  </Dictionary>
+  <ReportPage Name="Page1" Watermark.Font="Arial, 60pt">
+    <ReportTitleBand Name="ReportTitle1" Width="718.2" Height="113.4" Border.Lines="All" Border.Color="Gray">
+      <PictureObject Name="Picture1" Left="18.9" Top="18.9" Width="75.6" Height="75.6" DataColumn="Empresas.Foto"/>
+      <TextObject Name="Text11" Left="108.4" Top="85.05" Width="415.8" Height="18.9" Text="Listagem de Produtos" Font="Arial, 12pt, style=Italic"/>
+      <TextObject Name="Text12" Left="548.1" Top="85.05" Width="151.2" Height="18.9" Text="[Date]" HorzAlign="Right" Font="Arial, 8pt, style=Italic"/>
+      <TextObject Name="Text13" Left="113.4" Top="18.9" Width="444.15" Height="18.9" Text="[Empresas.Nome]" HorzAlign="Center" Font="Arial, 12pt, style=Bold"/>
+      <TextObject Name="Text14" Left="113.4" Top="47.25" Width="444.15" Height="18.9" Text="[Empresas.Email]" HorzAlign="Center" Font="Arial, 12pt, style=Bold"/>
+    </ReportTitleBand>
+    <PageHeaderBand Name="PageHeader1" Top="117.4" Width="718.2" Height="28.35" Border.Lines="Bottom">
+      <TextObject Name="Text3" Left="9.45" Top="6" Width="56.7" Height="18.9" Border.Color="Gray" Text="#ID" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text5" Left="74.75" Top="6" Width="226.8" Height="18.9" Border.Color="Gray" Text="Descrição" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text7" Left="312.65" Top="6" Width="132.3" Height="18.9" Border.Color="Gray" Text="Preço do Produto" HorzAlign="Right" Font="Arial, 10pt, style=Bold"/>
+    </PageHeaderBand>
+    <DataBand Name="Data1" Top="149.75" Width="718.2" Height="56.7" DataSource="Produtos">
+      <TextObject Name="Text2" Left="9.45" Top="6.45" Width="56.7" Height="18.9" Border.Color="Gray" Text="[Produtos.Id]" Font="Arial, 10pt"/>
+      <TextObject Name="Text4" Left="76.4" Top="6" Width="226.8" Height="18.9" Border.Color="Gray" Text="[Produtos.Descricao]" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text6" Left="312.1" Top="6" Width="132.3" Height="18.9" Border.Color="Gray" Text="[Produtos.Preco]" Format="Number" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" Font="Arial, 10pt, style=Bold"/>
+      <BarcodeObject Name="Barcode1" Left="466.85" Top="5.45" Width="236.25" Height="47.25" DataColumn="Produtos.Ean" Text="[Produtos.Ean]" AllowExpressions="true" Barcode="Code128" Barcode.AutoEncode="true"/>
+    </DataBand>
+    <PageFooterBand Name="PageFooter1" Top="210.45" Width="718.2" Height="27.9" Border.Lines="Top">
+      <TextObject Name="Text8" Left="9.45" Top="5" Width="170.1" Height="18.9" Border.Color="Gray" Text="Página: [Page] / [TotalPages#]" Font="Arial, 7pt, style=Bold"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

@@ -59,8 +59,27 @@ namespace DevIO.Api.Controllers
             return File(HelperFastReport.ExportarPdf(webReport), "application/pdf", "ListagemDeUsuarioComCabecalho.pdf");
         }
 
+        [HttpGet("ListagemProdutos")]
+        public IActionResult GetListagemProdutos()
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
 
+            var webReport = HelperFastReport.WebReport("ListagemProdutos.frx");
 
+            var produtoList = _context.Produtos.ToList();
+            var empresaList = _context.Empresas.Where(u => u.Id == 1).ToList();
+
+            var produtos = HelperFastReport.GetTable<ProdutoEntity>(produtoList, "Produtos");
+            var empresas = HelperFastReport.GetTable<EmpresaEntity>(empresaList, "Empresas");
+
+            webReport.Report.RegisterData(produtos, "Produtos");
+            webReport.Report.RegisterData(empresas, "Empresas");
+            //"Usuarios" nome usado no relatório como Data Source
+            return File(HelperFastReport.ExportarPdf(webReport), "application/pdf", "ListagemProdutos.pdf");
+        }
     }
 }
 
