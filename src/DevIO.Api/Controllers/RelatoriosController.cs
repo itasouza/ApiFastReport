@@ -2,11 +2,13 @@
 using DevIO.Api.Entity;
 using DevIO.Api.Helper;
 using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
 using System.Data;
 using System.Linq;
 
 namespace DevIO.Api.Controllers
 {
+
 
     public class RelatoriosController : ControllerBase
     {
