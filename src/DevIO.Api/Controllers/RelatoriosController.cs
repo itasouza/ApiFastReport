@@ -80,6 +80,29 @@ namespace DevIO.Api.Controllers
             //"Usuarios" nome usado no relatório como Data Source
             return File(HelperFastReport.ExportarPdf(webReport), "application/pdf", "ListagemProdutos.pdf");
         }
+
+        [HttpGet("ListagemClientes")]
+        public IActionResult GetListagemClientes()
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var webReport = HelperFastReport.WebReport("ListagemClientes.frx");
+
+            var clienteList = _context.Clientes.ToList();
+            var empresaList = _context.Empresas.Where(u => u.Id == 1).ToList();
+
+            var clientes = HelperFastReport.GetTable<ClienteEntity>(clienteList, "Clientes");
+            var empresas = HelperFastReport.GetTable<EmpresaEntity>(empresaList, "Empresas");
+
+            webReport.Report.RegisterData(clientes, "Clientes");
+            webReport.Report.RegisterData(empresas, "Empresas");
+            //"Usuarios" nome usado no relatório como Data Source
+            return File(HelperFastReport.ExportarPdf(webReport), "application/pdf", "ListagemClientes.pdf");
+        }
+
     }
 }
 

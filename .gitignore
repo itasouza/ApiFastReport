@@ -4,3 +4,4 @@
 *.dll
 src/DevIO.Api/obj/
 src/DevIO.Api/bin/
+src/DevIO.Api/obj/Debug
