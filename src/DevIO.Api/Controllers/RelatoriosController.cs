@@ -103,6 +103,51 @@ namespace DevIO.Api.Controllers
             return File(HelperFastReport.ExportarPdf(webReport), "application/pdf", "ListagemClientes.pdf");
         }
 
+
+        [HttpGet("FichaProdutoPorEan/{EAN}")]
+        public IActionResult GetFichaProduto([FromRoute][Required] string EAN)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var webReport = HelperFastReport.WebReport("ListagemProdutosPorEan.frx");
+
+            var produtoList = _context.Produtos.Where(p => p.Ean.Equals(EAN)).ToList();
+            var empresaList = _context.Empresas.Where(u => u.Id == 1).ToList();
+
+            var produto = HelperFastReport.GetTable<ProdutoEntity>(produtoList, "Produtos");
+            var empresas = HelperFastReport.GetTable<EmpresaEntity>(empresaList, "Empresas");
+
+            webReport.Report.RegisterData(produto, "Produtos");
+            webReport.Report.RegisterData(empresas, "Empresas");
+            //"Usuarios" nome usado no relatório como Data Source
+            return File(HelperFastReport.ExportarPdf(webReport), "application/pdf", "FichaDeProduto.pdf");
+        }
+
+        [HttpGet("FichaProdutoPorId/{Id}")]
+        public IActionResult GetFichaProdutoPorId([FromRoute][Required] int Id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var webReport = HelperFastReport.WebReport("ListagemProdutosPorEan.frx");
+
+            var produtoList = _context.Produtos.Where(p => p.Id == Id  ).ToList();
+            var empresaList = _context.Empresas.Where(u => u.Id == 1).ToList();
+
+            var produto = HelperFastReport.GetTable<ProdutoEntity>(produtoList, "Produtos");
+            var empresas = HelperFastReport.GetTable<EmpresaEntity>(empresaList, "Empresas");
+
+            webReport.Report.RegisterData(produto, "Produtos");
+            webReport.Report.RegisterData(empresas, "Empresas");
+            //"Usuarios" nome usado no relatório como Data Source
+            return File(HelperFastReport.ExportarPdf(webReport), "application/pdf",$"FichaDeProdutoPorId_{Id.ToString()}.pdf");
+        }
+
     }
 }
 
