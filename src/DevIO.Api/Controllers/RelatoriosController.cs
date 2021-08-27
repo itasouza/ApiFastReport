@@ -123,7 +123,7 @@ namespace DevIO.Api.Controllers
             webReport.Report.RegisterData(produto, "Produtos");
             webReport.Report.RegisterData(empresas, "Empresas");
             //"Usuarios" nome usado no relatório como Data Source
-            return File(HelperFastReport.ExportarPdf(webReport), "application/pdf", "FichaDeProduto.pdf");
+            return File(HelperFastReport.ExportarPdf(webReport), "application/pdf", "FichaDeProdutoPorEan.pdf");
         }
 
         [HttpGet("FichaProdutoPorId/{Id}")]
